@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="p:domain_verify" content="28ddb3d77e6ff3099a5d779d11e0a6b9"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eclipse — Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Inter,-apple-system,sans-serif;
+background:#0b0b0f;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.hero-title{
+font-size:clamp(60px,12vw,180px);
+font-weight:500;
+letter-spacing:-0.04em;
+
+opacity:0;
+transform:scale(.95);
+filter:blur(20px);
+
+transition:all 1.8s cubic-bezier(.16,1,.3,1);
+}
+
+.hero-sub{
+margin-top:18px;
+font-size:14px;
+letter-spacing:.3em;
+text-transform:uppercase;
+
+opacity:0;
+transform:translateY(10px);
+
+transition:all 2s cubic-bezier(.16,1,.3,1);
+}
+
+.hero-title.visible{
+opacity:1;
+transform:scale(1);
+filter:blur(0);
+}
+
+.hero-sub.visible{
+opacity:.6;
+transform:translateY(0);
+}
+
+/* PROJECTS */
+
+.projects-section{
+padding:80px 0 160px;
+opacity:0;
+transform:translateY(60px);
+transition:all 1.2s cubic-bezier(.16,1,.3,1);
+}
+
+.projects-section.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.projects{
+display:flex;
+gap:60px;
+padding:0 10vw;
+overflow-x:auto;
+scroll-behavior:smooth;
+}
+
+.projects::-webkit-scrollbar{
+display:none;
+}
+
+.video-card{
+flex:0 0 420px;
+height:600px;
+border-radius:28px;
+overflow:hidden;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 20px 60px rgba(0,0,0,.6);
+transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+
+.video-card:hover{
+transform:scale(1.05);
+}
+
+.video-card video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* NAVIGATION */
+
+.bottom-nav{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+
+width:min(600px,92%);
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-around;
+
+border-radius:40px;
+
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(30px);
+
+border:1px solid rgba(255,255,255,.12);
+
+z-index:100;
+}
+
+.nav-icon{
+width:30px;
+height:30px;
+
+stroke:white;
+stroke-width:1.7;
+
+fill:none;
+
+display:block;
+
+vector-effect: non-scaling-stroke;
+}
+
+.nav-icon:hover{
+opacity:1;
+transform:scale(1.2);
+
+filter:drop-shadow(0 0 10px rgba(255,255,255,0.6));
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+.video-card{
+flex:0 0 280px;
+height:420px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<h1 class="hero-title" id="heroTitle">eclipse</h1>
+<div class="hero-sub" id="heroSub">Motion Designer · 3D Artist</div>
+</section>
+
+<section class="projects-section" id="projectsSection">
+<div class="projects" id="projects"></div>
+</section>
+
+<div class="bottom-nav">
+
+<!-- TikTok -->
+<a href="https://www.tiktok.com/@3eclip5e" target="_blank">
+<svg class="nav-icon" viewBox="0 0 24 24">
+<path d="M16 3c.5 2 2 3.5 4 4v3c-2 0-3.5-.5-4-1.2V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v3c-.3-.1-.6-.2-1-.2a2 2 0 1 0 2 2V3h3z"/>
+</svg>
+</a>
+
+<!-- YouTube -->
+<a href="https://www.youtube.com/@3eclip5e/shorts" target="_blank">
+<svg class="nav-icon" viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="14" rx="4"/>
+<polygon points="10,9 16,12 10,15"/>
+</svg>
+</a>
+
+<!-- Pinterest -->
+<a href="https://ar.pinterest.com/3clip5e/" target="_blank">
+<svg class="nav-icon" viewBox="0 0 24 24">
+<path d="M12 3C7.5 3 4 6.3 4 10.4c0 3.2 2 5.9 4.8 6.8l1-4.2c-.3-.6-.5-1.3-.5-2 0-1.9 1.4-3.4 3.2-3.4 1.5 0 2.4 1 2.4 2.4 0 1.4-.9 3.6-1.3 5.1-.4 1.5.5 2.7 1.9 2.7 2.5 0 4.5-2.6 4.5-6.1C20 6.8 17.7 3 12 3Z"/>
+</svg>
+</a>
+
+<!-- Instagram -->
+<a href="https://www.instagram.com/3eclip5e" target="_blank">
+<svg class="nav-icon" viewBox="0 0 24 24">
+<path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm6-10.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18 6.5z"/>
+</svg>
+</a>
+
+<!-- Telegram -->
+<a href="https://t.me/k0lyaqqe" target="_blank">
+<svg class="nav-icon" viewBox="0 0 24 24">
+<path d="M3 11l18-8-6 20-4-8-6-2z"/>
+</svg>
+</a>
+
+</div>
+
+<script>
+
+/* HERO */
+
+window.addEventListener('load',()=>{
+heroTitle.classList.add('visible');
+heroSub.classList.add('visible');
+});
+
+/* VIDEO LOADER */
+
+const projects=document.getElementById("projects");
+
+const VIDEO_COUNT=15;
+
+for(let i=1;i<=VIDEO_COUNT;i++){
+
+const card=document.createElement("div");
+card.className="video-card";
+
+const video=document.createElement("video");
+
+video.src=`videos/${i}.mp4`;
+video.autoplay=true;
+video.muted=true;
+video.loop=true;
+video.playsInline=true;
+
+card.appendChild(video);
+projects.appendChild(card);
+
+/* Hover sound */
+
+card.addEventListener("mouseenter",()=>{
+video.muted=false;
+});
+
+/* Hover Sound Fix (stable version) */
+
+card.addEventListener("mouseenter", () => {
+    video.muted = false;
+
+    if (video.paused) {
+        video.play().catch(()=>{});
+    }
+
+    video.volume = 0.6;
+});
+
+card.addEventListener("mouseleave", () => {
+    video.muted = true;
+});
+
+}
+
+/* SCROLL */
+
+window.addEventListener('scroll',()=>{
+
+const scroll=window.scrollY;
+const fadeDistance=window.innerHeight*0.8;
+const progress=Math.min(scroll/fadeDistance,1);
+
+heroTitle.style.transform=
+`translateY(-${progress*150}px) scale(${1-progress*0.1})`;
+
+heroTitle.style.opacity=1-progress;
+heroTitle.style.filter=`blur(${progress*25}px)`;
+
+heroSub.style.opacity=0.6-progress*0.6;
+
+if(scroll>window.innerHeight*0.4){
+projectsSection.classList.add('visible');
+}
+
+});
+
+/* HORIZONTAL SCROLL */
+
+projects.addEventListener('wheel',(e)=>{
+if(e.deltaY!==0){
+e.preventDefault();
+projects.scrollLeft+=e.deltaY;
+}
+},{passive:false});
+
+</script>
+
+</body>
+</html>
