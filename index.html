@@ -37,11 +37,9 @@ justify-content:center;
 font-size:clamp(60px,12vw,180px);
 font-weight:500;
 letter-spacing:-0.04em;
-
 opacity:0;
 transform:scale(.95);
 filter:blur(20px);
-
 transition:all 1.8s cubic-bezier(.16,1,.3,1);
 }
 
@@ -50,10 +48,8 @@ margin-top:18px;
 font-size:14px;
 letter-spacing:.3em;
 text-transform:uppercase;
-
 opacity:0;
 transform:translateY(10px);
-
 transition:all 2s cubic-bezier(.16,1,.3,1);
 }
 
@@ -71,49 +67,98 @@ transform:translateY(0);
 /* PROJECTS */
 
 .projects-section{
-padding:80px 0 160px;
-opacity:0;
-transform:translateY(60px);
-transition:all 1.2s cubic-bezier(.16,1,.3,1);
-}
+padding:0 0 250px;
+margin-top:-185px;
 
-.projects-section.visible{
-opacity:1;
-transform:translateY(0);
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
 }
 
 .projects{
 display:flex;
-gap:60px;
-padding:0 10vw;
+gap:40px;
+padding:40px 10vw 0;
+
 overflow-x:auto;
 scroll-behavior:smooth;
+
+/* ===== Edge Blur Mask ===== */
+
+mask-image:linear-gradient(
+    to right,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+);
+
+-webkit-mask-image:linear-gradient(
+    to right,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+);
 }
 
 .projects::-webkit-scrollbar{
 display:none;
 }
 
+/* VIDEO CARD ANIMATION */
+
 .video-card{
 flex:0 0 420px;
 height:600px;
 border-radius:28px;
 overflow:hidden;
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(25px);
-border:1px solid rgba(255,255,255,.08);
-box-shadow:0 20px 60px rgba(0,0,0,.6);
-transition:transform .5s cubic-bezier(.16,1,.3,1);
+position:relative;
+
+background:rgba(255,255,255,.04);
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.6),
+inset 0 0 0 1px rgba(255,255,255,.05);
+
+opacity:0;
+transform:translateY(80px);
+
+filter:blur(20px);
+
+-webkit-backface-visibility:hidden;
+backface-visibility:hidden;
+
+transform:translateZ(0);
+will-change:transform,opacity,filter;
+
+transition:
+transform 1s cubic-bezier(.16,1,.3,1),
+opacity 1s ease,
+filter 1s ease;
+}
+
+.video-card.visible{
+opacity:1;
+transform:translateY(0);
+filter:blur(0);
 }
 
 .video-card:hover{
-transform:scale(1.05);
+transform:translateY(-14px);
+box-shadow:0 60px 150px rgba(0,0,0,.85);
 }
 
 .video-card video{
 width:100%;
 height:100%;
 object-fit:cover;
+transition:transform .8s cubic-bezier(.16,1,.3,1);
+}
+
+.video-card:hover video{
+transform:scale(1.08);
 }
 
 /* NAVIGATION */
@@ -123,43 +168,32 @@ position:fixed;
 bottom:20px;
 left:50%;
 transform:translateX(-50%);
-
 width:min(600px,92%);
 height:70px;
-
 display:flex;
 align-items:center;
 justify-content:space-around;
-
 border-radius:40px;
-
 background:rgba(255,255,255,.06);
 backdrop-filter:blur(30px);
-
 border:1px solid rgba(255,255,255,.12);
-
 z-index:100;
 }
 
 .nav-icon{
 width:30px;
 height:30px;
-
 stroke:white;
 stroke-width:1.7;
-
 fill:none;
-
 display:block;
-
-vector-effect: non-scaling-stroke;
+vector-effect:non-scaling-stroke;
+transition:all .3s ease;
 }
 
 .nav-icon:hover{
-opacity:1;
 transform:scale(1.2);
-
-filter:drop-shadow(0 0 10px rgba(255,255,255,0.6));
+filter:drop-shadow(0 0 12px rgba(255,255,255,0.6));
 }
 
 /* MOBILE */
@@ -181,63 +215,47 @@ height:420px;
 <div class="hero-sub" id="heroSub">Motion Designer · 3D Artist</div>
 </section>
 
-<section class="projects-section" id="projectsSection">
+<section class="projects-section">
 <div class="projects" id="projects"></div>
 </section>
 
 <div class="bottom-nav">
-
-<!-- TikTok -->
 <a href="https://www.tiktok.com/@3eclip5e" target="_blank">
 <svg class="nav-icon" viewBox="0 0 24 24">
 <path d="M16 3c.5 2 2 3.5 4 4v3c-2 0-3.5-.5-4-1.2V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v3c-.3-.1-.6-.2-1-.2a2 2 0 1 0 2 2V3h3z"/>
 </svg>
 </a>
-
-<!-- YouTube -->
 <a href="https://www.youtube.com/@3eclip5e/shorts" target="_blank">
 <svg class="nav-icon" viewBox="0 0 24 24">
 <rect x="3" y="5" width="18" height="14" rx="4"/>
 <polygon points="10,9 16,12 10,15"/>
 </svg>
 </a>
-
-<!-- Pinterest -->
 <a href="https://ar.pinterest.com/3clip5e/" target="_blank">
 <svg class="nav-icon" viewBox="0 0 24 24">
-<path d="M12 3C7.5 3 4 6.3 4 10.4c0 3.2 2 5.9 4.8 6.8l1-4.2c-.3-.6-.5-1.3-.5-2 0-1.9 1.4-3.4 3.2-3.4 1.5 0 2.4 1 2.4 2.4 0 1.4-.9 3.6-1.3 5.1-.4 1.5.5 2.7 1.9 2.7 2.5 0 4.5-2.6 4.5-6.1C20 6.8 17.7 3 12 3Z"/>
+<path d="M12 2C7.4 2 4 5.6 4 10c0 3.3 2 6.1 4.9 7.2l1.1-4.4c-.3-.6-.5-1.3-.5-2 0-2.3 1.7-4.1 4.2-4.1 2 0 3.2 1.2 3.2 2.8 0 1.8-1.1 3.8-1.7 6.1l-.7 2.7c1.2-.8 2.1-2.3 2.4-3.9 1.5-.7 2.4-2.3 2.4-4.1 0-3.1-2.2-5.3-5.5-5.3z"/>
 </svg>
 </a>
-
-<!-- Instagram -->
 <a href="https://www.instagram.com/3eclip5e" target="_blank">
 <svg class="nav-icon" viewBox="0 0 24 24">
 <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm6-10.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18 6.5z"/>
 </svg>
 </a>
-
-<!-- Telegram -->
 <a href="https://t.me/k0lyaqqe" target="_blank">
 <svg class="nav-icon" viewBox="0 0 24 24">
 <path d="M3 11l18-8-6 20-4-8-6-2z"/>
 </svg>
 </a>
-
 </div>
 
 <script>
-
-/* HERO */
 
 window.addEventListener('load',()=>{
 heroTitle.classList.add('visible');
 heroSub.classList.add('visible');
 });
 
-/* VIDEO LOADER */
-
 const projects=document.getElementById("projects");
-
 const VIDEO_COUNT=15;
 
 for(let i=1;i<=VIDEO_COUNT;i++){
@@ -246,41 +264,29 @@ const card=document.createElement("div");
 card.className="video-card";
 
 const video=document.createElement("video");
-
-video.src = "https://raw.githubusercontent.com/kolyaqqe/Portfolio/main/video/" + i + ".mp4";
+video.src="./videos/"+i+".mp4";
 video.autoplay=true;
 video.muted=true;
 video.loop=true;
 video.playsInline=true;
+video.preload="auto";
 
 card.appendChild(video);
 projects.appendChild(card);
 
-/* Hover sound */
-
 card.addEventListener("mouseenter",()=>{
 video.muted=false;
+video.volume=0.6;
+if(video.paused){
+video.play().catch(()=>{});
+}
 });
 
-/* Hover Sound Fix (stable version) */
-
-card.addEventListener("mouseenter", () => {
-    video.muted = false;
-
-    if (video.paused) {
-        video.play().catch(()=>{});
-    }
-
-    video.volume = 0.6;
-});
-
-card.addEventListener("mouseleave", () => {
-    video.muted = true;
+card.addEventListener("mouseleave",()=>{
+video.muted=true;
 });
 
 }
-
-/* SCROLL */
 
 window.addEventListener('scroll',()=>{
 
@@ -296,13 +302,20 @@ heroTitle.style.filter=`blur(${progress*25}px)`;
 
 heroSub.style.opacity=0.6-progress*0.6;
 
-if(scroll>window.innerHeight*0.4){
-projectsSection.classList.add('visible');
-}
+const cards=document.querySelectorAll(".video-card");
 
+cards.forEach(card=>{
+const rect=card.getBoundingClientRect();
+const trigger=window.innerHeight*0.6;
+
+if(rect.top<trigger){
+card.classList.add("visible");
+}else{
+card.classList.remove("visible");
+}
 });
 
-/* HORIZONTAL SCROLL */
+});
 
 projects.addEventListener('wheel',(e)=>{
 if(e.deltaY!==0){
@@ -311,9 +324,9 @@ projects.scrollLeft+=e.deltaY;
 }
 },{passive:false});
 
+
 </script>
 
+
 </body>
-
 </html>
-
